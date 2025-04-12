@@ -29,5 +29,5 @@ data/
 dump/
 
 # Optional: if using cloudinary or firebase configs
-cloudinary.js
+
 firebaseConfig.js
