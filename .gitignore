@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# Build folders (if any)
+dist/
+build/
+
+# Coverage reports
+coverage/
+
+# MongoDB data (if you're storing locally)
+data/
+dump/
+
+# Optional: if using cloudinary or firebase configs
+cloudinary.js
+firebaseConfig.js
