@@ -24,17 +24,20 @@ mongoose
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(cors(corsOptions));
 const corsOptions = {
-  origin: "https://nabihakhan6t4.github.io",
+  origin: [
+    "https://nabihakhan6t4.github.io", 
+    "https://server-lhxpbq9qp-nabiha-khans-projects-954d6523.vercel.app" 
+  ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // CORS middleware ko use karo
 
+
+app.use(cors(corsOptions));
 
 // Middleware setup
 app.use(cookieParser());
@@ -54,7 +57,5 @@ app.use("/api/shop/order", shopOrderRouter);
 app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/common/feature", commonFeatureRouter);
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-});
+
 module.exports = app;
