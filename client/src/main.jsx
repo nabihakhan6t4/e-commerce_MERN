@@ -7,10 +7,11 @@ import store from "./store/store.js";
 import { Toaster } from "./components/ui/toaster.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/e-commerce_MERN-frontend">
     <Provider store={store}>
       <App />
       <Toaster />
     </Provider>
   </BrowserRouter>
 );
+

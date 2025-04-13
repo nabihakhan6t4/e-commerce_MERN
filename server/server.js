@@ -23,39 +23,25 @@ mongoose
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-// CORS Configuration
 
-// CORS Configuration
-const allowedOrigins = [
-  "http://localhost:5174", // Frontend URL (adjust as needed)
-  "http://localhost:5173", // Another frontend URL if needed
-  "http://localhost:5175", // New frontend URL (add this)
-];
-
+app.use(cors());
+app.use(cors(corsOptions));
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "DELETE", "PUT"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "Cache-Control",
-    "Expires",
-    "Pragma",
-  ],
-  credentials: true, // Allow cookies to be sent with requests
+  origin: "https://nabihakhan6t4.github.io",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-app.use(cors(corsOptions)); // Apply CORS middleware
+app.use(cors(corsOptions));
+
 
 // Middleware setup
 app.use(cookieParser());
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.send("API is working!");
+});
 
 // Routes setup
 app.use("/api/auth", authRouter);
@@ -68,5 +54,7 @@ app.use("/api/shop/order", shopOrderRouter);
 app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/common/feature", commonFeatureRouter);
-
-app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
+module.exports = app;

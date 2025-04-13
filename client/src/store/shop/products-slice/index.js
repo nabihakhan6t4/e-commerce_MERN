@@ -18,7 +18,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     });
 
     const result = await axios.get(
-      `http://localhost:5000/api/shop/products/get?${query}`
+      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/shop/products/get?${query}`
     );
 
     console.log(result);
@@ -31,7 +31,7 @@ export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
     const result = await axios.get(
-      `http://localhost:5000/api/shop/products/get/${id}`
+      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/shop/products/get/${id}`
     );
 
     return result?.data;

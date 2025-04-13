@@ -10,7 +10,7 @@ export const getSearchResults = createAsyncThunk(
   "/order/getSearchResults",
   async (keyword) => {
     const response = await axios.get(
-      `http://localhost:5000/api/shop/search/${keyword}`
+      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/shop/search/${keyword}`
     );
 
     return response.data;
