@@ -24,24 +24,59 @@ mongoose
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// CORS Setup for Preflight Handling
+app.use((req, res, next) => {
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "https://nabihakhan6t4.github.io",
+    "https://e-commerce-mern-back-end.vercel.app",
+  ];
+
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Cache-Control"
+  );
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
+
+// CORS Global Setup (this will apply to all routes)
 const corsOptions = {
   origin: [
-    "https://nabihakhan6t4.github.io", 
-    "https://server-lhxpbq9qp-nabiha-khans-projects-954d6523.vercel.app" 
+    "http://localhost:5173",
+    "https://nabihakhan6t4.github.io",
+    "https://e-commerce-mern-back-end.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "Cache-Control"],
 };
 
-app.use(cors(corsOptions)); // CORS middleware ko use karo
-
-
+// Apply CORS globally
 app.use(cors(corsOptions));
 
 // Middleware setup
-app.use(cookieParser());
 app.use(express.json());
+app.use(cookieParser());
+
+// Test route to check if API is working
 app.get("/", (req, res) => {
   res.send("API is working!");
 });
@@ -58,4 +93,11 @@ app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/common/feature", commonFeatureRouter);
 
-module.exports = app;
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+module.exports = (req, res) => {
+  app(req, res);
+};

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const API_BASE_URL = "https://e-commerce-mern-back-end.vercel.app";
 
 const initialState = {
   isLoading: false,
@@ -10,7 +11,7 @@ export const getFeatureImages = createAsyncThunk(
   "/order/getFeatureImages",
   async () => {
     const response = await axios.get(
-      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/common/feature/get`
+      `${API_BASE_URL}/api/common/feature/get`
     );
 
     return response.data;
@@ -21,7 +22,7 @@ export const addFeatureImage = createAsyncThunk(
   "/order/addFeatureImage",
   async (image) => {
     const response = await axios.post(
-      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/common/feature/add`,
+      `${API_BASE_URL}/api/common/feature/add`,
       { image }
     );
 

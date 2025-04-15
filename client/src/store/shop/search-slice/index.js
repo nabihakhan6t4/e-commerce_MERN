@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const API_BASE_URL = "https://e-commerce-mern-back-end.vercel.app";
 
 const initialState = {
   isLoading: false,
@@ -10,7 +11,7 @@ export const getSearchResults = createAsyncThunk(
   "/order/getSearchResults",
   async (keyword) => {
     const response = await axios.get(
-      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/shop/search/${keyword}`
+      `${API_BASE_URL}/api/shop/search/${keyword}`
     );
 
     return response.data;

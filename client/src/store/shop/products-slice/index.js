@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const API_BASE_URL = "https://e-commerce-mern-back-end.vercel.app";
 
 const initialState = {
   isLoading: false,
@@ -18,7 +19,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     });
 
     const result = await axios.get(
-      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/shop/products/get?${query}`
+      `${API_BASE_URL}/api/shop/products/get?${query}`
     );
 
     console.log(result);
@@ -31,7 +32,7 @@ export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
     const result = await axios.get(
-      `https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/shop/products/get/${id}`
+      `${API_BASE_URL}/api/shop/products/get/${id}`
     );
 
     return result?.data;

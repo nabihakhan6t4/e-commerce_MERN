@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const API_BASE_URL = "https://e-commerce-mern-back-end.vercel.app";
 
 const initialState = {
   isAuthenticated: false,
@@ -12,7 +13,7 @@ export const registerUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/auth/register",
+      `${API_BASE_URL}/api/auth/register`,
       formData,
       {
         withCredentials: true,
@@ -28,7 +29,7 @@ export const loginUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/auth/login",
+      `${API_BASE_URL}/api/auth/login`,
       formData,
       {
         withCredentials: true,
@@ -44,7 +45,7 @@ export const logoutUser = createAsyncThunk(
 
   async () => {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/logout",
+      `${API_BASE_URL}/api/auth/logout`,
       {},
       {
         withCredentials: true,
@@ -60,7 +61,7 @@ export const checkAuth = createAsyncThunk(
 
   async () => {
     const response = await axios.get(
-      "https://server-ehy9hvd1d-nabiha-khans-projects-954d6523.vercel.app/api/auth/check-auth",
+      `${API_BASE_URL}/api/auth/check-auth`,
       {
         withCredentials: true,
         headers: {
